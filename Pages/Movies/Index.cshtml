@@ -1,0 +1,67 @@
+@page
+@model RazorPagesMovie.Pages_Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Tu Playlist";
+}
+
+<h1>TU PLAYLIST</h1>
+<style>
+  h1, p {
+
+font-family: Homemade Sausage;
+
+}
+</style>
+
+<p>
+    <a asp-page="Create">Agrega una cancion</a>
+</p>
+<form>
+    <p>
+        Titulo: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Fechalanzamiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Codigodealbum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody background="https://img.freepik.com/free-vector/musical-symbols-wave-white-background_1308-78045.jpg">
+@foreach (var item in Model.Movie) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fechalanzamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigodealbum)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
